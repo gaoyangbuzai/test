@@ -1,0 +1,53 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/cart/cart",
+        "pages/order/order",
+        "pages/user/user",
+        "pages/template/prolist/prolist",
+        "pages/product_view/product_view",
+        "pages/allgoods/allgoods"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F7F7F7",
+        "navigationBarTitleText": "456微商城",
+        "navigationBarTextStyle": "#000"
+    },
+    "tabBar": {
+        "color": "#888888",
+        "selectedColor": "#E64340",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "商城首页",
+                "iconPath": "images/icon/normal/home.png",
+                "selectedIconPath": "images/icon/16/home-16.png"
+            },
+            {
+                "pagePath": "pages/allgoods/allgoods",
+                "text": "全部商品",
+                "iconPath": "images/icon/normal/classify.png",
+                "selectedIconPath": "images/icon/16/classify-16.png"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "text": "购物车",
+                "iconPath": "images/icon/normal/cart.png",
+                "selectedIconPath": "images/icon/16/cart-16.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "个人中心",
+                "iconPath": "images/icon/normal/user.png",
+                "selectedIconPath": "images/icon/16/user-16.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 8000,
+        "connectSocket": 10000,
+        "upLoade": 7000,
+        "downloadFile": 10000
+    }
+}

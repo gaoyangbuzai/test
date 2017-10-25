@@ -1,0 +1,22 @@
+<template name="prolist">
+     <view class="recommend-main">
+        <block wx:for="{{cateItems}}" wx:for-item="item"> 
+            <view class="item">
+                <navigator url="/pages/product_view/product_view?id={{item.id}}">
+                    <view class="shop-image">
+                        <image src="{{item.thumb}}"></image>
+                    </view>
+                    <view class="goodName">{{item.title}}</view>
+                </navigator>
+                <view class="shop-short">
+                    <view class="price-cart">
+                        <view class="goodPrice">
+                            ¥ <text>{{item.minprice}}</text>
+                        </view>
+                        <view class="addCart icon icon-cart" data-index="{{index}}" bindtap="goods_add_cart"></view>
+                    </view>
+                </view>
+            </view>
+         </block>
+    </view> 
+</template>

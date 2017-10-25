@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="fui-swiper">
+        <swiper indicator-dots autoplay circular="true">
+            <swiper-item wx:for="{{}}">
+                <image src=""></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="icon icon-filter "></view>
+</view>

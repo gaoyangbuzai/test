@@ -1,0 +1,79 @@
+<!--pages/allgoods/index.wxml-->
+<view class="container" >
+    <view class="all-header">
+        <view class="all-header-left">
+            <view class="all-remark"></view>
+        </view>
+        <view class="all-header-body">
+            <form>
+                <view class="allgood-search">
+                    <view class="icon icon-search"></view>
+                    <input type="text" placeholder="输入关键字" placeholder-class="placeholder" bindinput="keywordInput" bindconfirm="toSearch"/>
+                </view>
+            </form>
+        </view>
+        <view class="all-header-right">
+            <view class="icon icon-sort"></view>
+        </view>
+    </view>
+    <view class="all-sort">
+        <view class="sort-item {{chosen['order']==''?'on':''}}"  bindtap="screening">
+            <view>综合</view>
+        </view>
+        <view class="sort-item {{chosen['order']=='sales'?'on':''}}" data-order="sales" bindtap="screening">
+            <view>销量</view>
+        </view>
+        <view class="sort-item {{chosen['order']=='minprice'?'on':''}}" data-order="minprice" bindtap="screening">
+            <view>价格</view>
+            <view class="sorting">
+                <text class="caret-up {{by=='asc'?'on':''}}"></text>
+                <text class="caret-down {{by=='desc'?'on':''}}"></text>
+            </view>
+        </view>
+        <view class="sort-item {{chosen['order']=='filter'?'on':''}}" data-order="filter" bindtap="screening">
+            <view>筛选</view>
+            <view class=" filter icon icon-filter"></view>
+        </view>
+    </view>
+
+    <view class="all-content">
+        <view class="allgood-wrap">
+            <!-- 店铺列表 -->
+            <import src="../template/prolist/prolist.wxml" />
+            <template is="prolist" data="{{cateItems}}" /> 
+            <view class="content-empty" wx:if="{{empty}}">
+                <view class="icon icon-searchlist"></view>
+                暂时没有任何商品
+            </view>
+        </view>
+    </view>
+
+    <view class="fui-mask" wx:if="{{mask}}"></view>
+    <view class="screen" wx:if="{{mask}}">
+        <view class="attribute">
+            <view class="attr-item {{chosen['isrecommand']?'on':''}}" data-type="isrecommand" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  推荐商品
+            </view>
+            <view class="attr-item {{chosen['isnew']?'on':''}}" data-type="isnew" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  新品上市
+            </view>
+            <view class="attr-item {{chosen['ishot']?'on':''}}" data-type="ishot" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  热卖商品
+            </view>
+            <view class="attr-item {{chosen['isdiscount']?'on':''}}" data-type="isdiscount" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  促销商品
+            </view>
+            <view class="attr-item {{chosen['issendfree']?'on':''}}" data-type="issendfree" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  卖家包邮
+            </view>
+            <view class="attr-item {{chosen['istime']?'on':''}}" data-type="istime" bindtap="chooseItem">
+                <text class="icon icon-check"></text>  限时抢购
+            </view>
+        </view>
+        <view class="btns">
+            <view class="cancle" bindtap="cancleScreen">取消筛选</view>
+            <view class="confirm" bindtap="confirmScreen">确认</view>
+        </view>
+    </view>
+</view>
+

@@ -1,0 +1,67 @@
+/* pages/product_view/product_view.wxss */
+page{height:100%;}
+.fui-header{display: flex;align-items: center;position: fixed;z-index:10;top:0;left:0;right:0;height:88rpx;line-height:88rpx;background: #F7F7F7;}
+.fui-header .fui-header-left{padding:0 12rpx 0 32rpx;text-align: center;width:72rpx;box-sizing:border-box;}
+.fui-header-left .fui-remark{width:24rpx;height:24rpx;border-left:4rpx solid #999;border-bottom:4rpx solid #999;transform: rotate(45deg);}
+.fui-header .fui-header-title{flex:1;}
+.fui-header-title .tab-list{display: flex;align-items: center;justify-content:space-between;text-align: center;font-size:16px;}
+.fui-header-title .tab-list .tab{flex:1;color:#666;border-bottom:2px solid transparent;}
+.fui-header-title .tab-list .tab.active{color:#ef4f4f;border-bottom-color:#ef4f4f;}
+
+.fui-content{padding-top:88rpx;width:100%;height:100%;margin-bottom:100rpx;}
+.padd-10{padding:0 20rpx;box-sizing: border-box;}
+.marg-10{margin-bottom:20rpx;}
+.fui-content .tab-swiper{height:100%;width:100%;}
+.fui-content .tab-swiper .scroll-content{height:100%;width:100%;background:#FAFAFA;}
+.goods-basic .goods-thumb swiper{width:750rpx;height:750rpx;}
+.goods-basic .goods-thumb image{width:100%;height:100%;}
+.fui-content .seckill-detail-group{display: flex;flex-direction:column;font-size:14px;border-bottom:1px solid #F5F5F5;background:#fff;}
+.seckill-detail-group .seckill-short{display: flex;align-items: center;background:#fff;}
+.seckill-short .seckill-goods-title{flex:1;padding-top:20rpx;font-size:15px;line-height:20px;color:#333;}
+.seckill-short .seckill-share{padding:0 8rpx 0 32rpx;color:#ff5555;line-height:36rpx;background:0;font-size:14px;}
+.seckill-short .seckill-share:after{border: 0;}
+.seckill-detail-group .goods-price-range{color:#fd5454;font-size:20px;line-height:30px;}
+.seckill-detail-group .goods-catetory{display: flex;justify-content: space-between;color:#666;font-size:13px;line-height:24px;}
+
+.seckill-active{font-size:13px;background:#fff;}
+.seckill-active .fui-cell{align-items: flex-start;}
+.active-label{width:96rpx;}
+.active-lines{flex:1;line-height:24px;font-size:13px;text-overflow: ellipsis;white-space: nowrap;overflow:hidden;box-sizing: border-box;}
+.active-lines .sale-line{text-overflow: ellipsis;white-space: nowrap;overflow:hidden;}
+.sale-tip{padding:0 3rpx;border:1px solid #ff5555;color:#ff5555;border-radius: 2px;}
+
+.choose-spec .fui-cell-text{color:#333;}
+.shop-group .shop-detail{flex:1;display: flex;align-items: center;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.shop-group .shop-detail .shop-avatar image{width:100rpx;height:100rpx;}
+.shop-group .shop-detail .shop-name-desc{flex:1;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;margin:0 24rpx;}
+.shop-group .shop-detail .shop-name-desc .shop-desc{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.shop-group .shop-btns{display: flex;}
+.shop-group .shop-btns .external-shop{line-height:60rpx;padding:0 24rpx;border:1px solid #7c7c7c;border-radius: 30rpx;margin-right:20rpx;}
+
+
+/* 相关套餐 */
+.detail-info-content .good-related{background:#fff;padding:0 20rpx;border-bottom:1px solid #ececec;margin-bottom:20rpx;box-sizing:border-box;font-size:14px;}
+.detail-info-content .good-related navigator{display:flex;width:100%;}
+.good-related .related-header {display: flex;padding:20rpx 0;border-bottom:1px solid #ececec;}
+.good-related .related-header .desc{flex:1;color:#7C7C7C;}
+.good-related .related-header .desc-left{color:#7C7C7C;}
+.good-related .related-header .desc-right{text-align:right;margin-right:5px;}
+.good-related .related-content{padding:16rpx 0;display: flex;}
+.good-related .related-content .related-item{flex:1;padding:8rpx 40rpx;}
+.good-related .related-content .related-item image{width:275rpx;height:275rpx;}
+.good-related .related-content .related-item .taocan-name{margin-top:3px;font-size:24rpx;height:64rpx;line-height:32rpx;overflow:hidden;}
+/* .pick-city{display: none;} */
+/* .pick-city .city-group checkbox-group{display: flex;}
+.pick-city .city-group label{margin-top:20rpx;flex:1;} */
+/* 底部模块 */
+.view-footer{font-size:12px;position:fixed;bottom:0;display: flex;align-items: center;width:100%;text-align: center;height:100rpx;background: #fff;}
+.view-footer .view-nav{width:40%;display: flex;color:#999;}
+.view-footer .view-nav .iconfont{font-size:40rpx;}
+.view-footer .view-nav .guanzhu{flex:1;}
+.view-footer .view-nav .dianpu{flex:1;}
+.view-footer .view-nav .gouwuche{flex:1;position:relative;}
+.view-footer .view-nav .gouwuche .cart-pro-num{position: absolute;left:60%;font-size:22rpx;width:28rpx;height:28rpx;background:#f00;line-height:28rpx;color:#fff;top:-8rpx;border-radius: 50%;}
+.view-footer .buy-type{width:60%;display: flex;}
+.view-footer .buy-type view{flex:1;color:#fff;height:100rpx;line-height:100rpx;}
+.view-footer .buy-type .addCart{background:#fe9402;}
+.view-footer .buy-type .buyOnce{background: #fd5555;}

@@ -1,0 +1,249 @@
+<!--pages/product_view/product_view.wxml-->
+<view class="container">
+    <view class="fui-header">
+        <view class="fui-header-left">
+             <view class="fui-remark" bindtap="goAllgoods"></view>
+        </view>
+        <view class="fui-header-title">
+            <view class="tab-list">
+                <view class="tab {{curTab=='0'?'active':''}}" data-index='0' bindtap="switchNav">商品</view>
+                <view class="tab {{curTab=='1'?'active':''}}"  data-index='1' bindtap="switchNav">详情</view>
+                <view class="tab {{curTab=='2'?'active':''}}" data-index='2' bindtap="switchNav" >参数</view>
+                <view class="tab {{curTab=='3'?'active':''}}" data-index='3' bindtap="switchNav" >评价</view>
+            </view>
+        </view>
+    </view>
+    <view class="fui-content">
+        <swiper class="tab-swiper" current="{{curTab}}" duration="300" bindchange="switchTab">
+            <swiper-item data-tab='tab1' class="tab-swiper-item">
+                <scroll-view class="scroll-content goods-basic" scroll-y>
+                    <view class="goods-thumb">
+                        <swiper indicator-dots autoplay indicator-color="rgba(255,255,255,0.5)" indicator-active-color="rgba(255,255,255,1)">
+                            <block wx:for="{{goods.thumbs}}">
+                                <swiper-item>
+                                    <image src="{{item}}"></image>
+                                </swiper-item>
+                            </block>
+                        </swiper>
+                    </view>
+                    <view class="seckill-detail-group padd-10">
+                        <view class="seckill-short">
+                            <view class="seckill-goods-title">{{goods.title}}</view>
+                            <button class="seckill-share" open-type="share">
+                                <view class="icon icon-share"></view>
+                                <text>分享</text>
+                            </button>
+                        </view>
+                        <view class="goods-price-range">
+                            <text wx:if="{{goods.minprice==goods.maxprice}}">￥ {{goods.minprice}}</text>
+                            <text wx:else>￥ {{goods.minprice}} ~ {{goods.maxprice}}</text>
+                        </view>
+                        <view class="goods-catetory">
+                            <view>快递：<text wx:if="{{goods.dispatchprice>0}}">{{goods.dispatchprice}}元</text><text wx:else>包邮</text></view>
+                            <view wx:if="{{goods.sales>0}}">销量：<text>{{goods.sales}}</text>{{goods.unit}}</view>
+                            <view class="local-city" wx:if="{{goods.province!='请选择省份'}}">湖南省 长沙市</view>
+                        </view>
+                    </view>
+                    <view class="seckill-active marg-10" bindtap="activeappear">
+                        <view class="fui-cell">
+                            <view class="active-label">活动</view>
+                            <view class="active-lines">
+                                <view class="sale-line" wx:if="{{goods.enoughs.length>0}}">
+                                    <text class="sale-tip">满减</text> 全场满<text class="text-danger"> ￥{{goods.enoughs[0].enough}} </text>立减<text class="text-danger"> ￥{{goods.enoughs[0].money}} </text>  
+                                </view>
+                                <view class="sale-line">
+                                    <text class="sale-tip">包邮</text> 
+                                    <text wx:if="{{goods.ednum>0}}">单品满<text class="text-danger"> ￥{{goods.ednum}} </text>{{goods.unit}}包邮;</text>
+                                    <text wx:if="{{goods.edmoney>0}}"> 单品满<text class="text-danger"> ￥{{goods.edmoney}} </text>包邮;</text>
+                                    全场满<text class="text-danger">￥300</text>包邮 
+                                </view>
+                            </view>
+                            <view class="fui-cell-remark"></view>
+                        </view>
+                    </view>
+                    <view class="marg-10" bindtap="cityappear">
+                        <view class="fui-cell">
+                            <view class="fui-cell-text">不配送区域：</view>
+                            <view class="fui-cell-remark"></view>
+                        </view>
+                    </view>
+                    <view class="marg-10 choose-spec" bindtap="specAppear">
+                        <view class="fui-cell">
+                            <view class="fui-cell-text">请选择{{goods.spec_titles}}等</view>
+                            <view class="fui-cell-remark"></view>
+                        </view>
+                    </view>
+                    <!-- 相关套餐 -->
+                    <view class="good-related">
+                        <!-- <view > -->
+                        <navigator url="/pages/related/index" class="related-header">
+                            <view class="desc desc-left">相关套餐</view>
+                            <view class="desc desc-right">更多套餐</view>
+                            <view class="good-remark"></view>
+                        </navigator>
+                        <!-- </view> -->
+                        <view class="related-content">
+                            <navigator url="/pages/related/index">
+                                <view class="related-item">
+                                    <image src="/images/related-1.jpg"></image>
+                                    <view class="taocan-name"><text>iPadMini2/3苹果迷你二爱派保护皮套MD531ZP外壳平板电脑a1489 苹</text></view>
+                                </view>
+                                <view class="related-item">
+                                    <image src="/images/related-2.png"></image>
+                                    <view class="taocan-name"><text>iPadMini2/3苹果迷你二爱派保护皮套MD531ZP外壳平板电脑a1489 苹iPadMini2/3苹果迷你二爱派保护皮套MD531ZP外壳平板电脑a1489 苹</text></view>
+                                </view>
+                            </navigator>
+                        </view>
+                    </view>
+                    <!-- 店铺介绍 -->
+                    <view class="shop-group marg-10">
+                        <view class="fui-cell">
+                            <view class="shop-detail">
+                                    <view class="shop-avatar">
+                                    <image src="{{goods.shopdetail.logo}}"></image>
+                                </view>
+                                <view class="shop-name-desc">
+                                    <view class="shop-name">
+                                        <text>{{goods.shopdetail.shopname}}</text>
+                                    </view>
+                                    <view class="shop-desc">
+                                        <text>{{goods.shopdetail.description}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="shop-btns">
+                                <navigator url="/pages/index/index" open-type="switchTab">
+                                    <view class="external-shop">{{goods.shopdetail.btntext2}}</view>
+                                </navigator>
+                            </view>
+                            
+                        </view>
+                    </view>
+                </scroll-view>
+            </swiper-item>
+            <swiper-item data-tab='tab2' class="tab-swiper-item">
+                <scroll-view class="scroll-content goods-detail" scroll-y>
+
+                </scroll-view>
+            </swiper-item>
+            <swiper-item data-tab='tab3' class="tab-swiper-item">
+                <scroll-view class="scroll-content goods-paramter" scroll-y>
+
+                </scroll-view>
+            </swiper-item>
+            <swiper-item data-tab='tab4' class="tab-swiper-item">
+                <scroll-view class="scroll-content goods-judge" scroll-y>
+
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <!-- 底部模块 -->
+    <view class="view-footer">
+        <view class="view-nav">
+            <view class="guanzhu">
+                <view class="icon icon-attention"></view>
+                <text>关注</text>
+            </view>
+            <view class="dianpu" bindtap="toIndex">
+                <view class="icon icon-shop"></view>
+                <text>店铺</text>
+            </view>
+            <view class="gouwuche" bindtap="toCart">
+                <view class="icon icon-cart"></view>
+                <text>购物车</text>
+                <view class="cart-pro-num">1</view>
+            </view>
+        </view>
+        <view class="buy-type">
+            <view class="addCart" bindtap="specAppear">加入购物车</view>
+            <view class="buyOnce" bindtap="specAppear">立刻购买</view>
+        </view>
+    </view>
+</view>
+<!-- 遮罩层 -->
+<view class="mask-bg" wx:if="{{mask}}" bindtap="maskDisppear"></view>
+<!-- 不配送区域 -->
+<view class="fui-modal pick-city" wx:if="{{cityappear}}">
+    <view class="fui-cell-title">不配送区域</view>
+    <view class="fui-cell-body city-group">
+        <view class="edareas">{{goods.edareas}}</view>
+    </view>
+    <button type="warn" form-type="submit">确定</button>
+</view>
+<!-- 全部活动 -->
+<view class="fui-modal seckill-active" wx:if="{{activeappear}}">
+    <view class="fui-cell-title">活动</view>
+    <view class="fui-cell-body">
+        <view class="fui-cell">
+            <view class="active-label"><text class="sale-tip">满减</text></view>
+            <view class="active-lines">
+                <view class="sale-line" wx:for="{{goods.enoughs}}">全场满<text class="text-danger"> ￥{{item.enough}} </text>立减<text class="text-danger"> ￥{{item.money}} </text></view>
+            </view>
+        </view>
+        <view class="fui-cell">
+            <view class="active-label"><text class="sale-tip">包邮</text></view>
+            <view class="active-lines">
+                <view class="sale-line" wx:if="{{goods.ednum>0}}">单品满<text class="text-danger"> ￥{{goods.ednum}} </text>{{goods.unit}}包邮;</view>
+                <view class="sale-line" wx:if="{{goods.edmoney>0}}">单品满<text class="text-danger"> ￥{{goods.edmoney}} </text>包邮;</view>
+                <view class="sale-line">全场满<text class="text-danger"> ￥300 </text>包邮</view>
+            </view>
+        </view>
+    </view>
+    <button type="warn" form-type="submit">确定</button>
+</view>
+<!-- 规格选择 -->
+<view class="picker-model" > 
+    <view class="picker-header">
+        <view class="picker-image">
+            <image src="{{goods.thumb}}"></image>
+        </view>
+        <view class="picker-cell">
+            <view class="info-price">
+                <view >
+                    <text wx:if="{{goods.minprice==goods.maxprice}}">￥ {{goods.minprice}}</text>
+                    <text wx:elif="{{haveChose}}">￥ {{realPrice}}</text>
+                    <text wx:else>￥ {{goods.minprice}} ~ {{goods.maxprice}}</text>
+                </view>
+            </view>
+            <view class="info-total">库存 <text>{{goods.total}}</text>{{goods.unit}}</view>
+            <view class="info-spec-title" wx:if="{{goods.total&&haveChose}}"><text>已选</text> <text>{{chosen}}</text></view>
+            <view class="info-spec-title" wx:else="{{goods.haveSpec}}"><text>请选择规格</text></view>
+        </view>
+        <view class="close-btn icon icon-roundclose" bindtap="closespec"></view>
+    </view>
+    <view class="info-spec-list" wx:if="{{goods.haveSpec}}">
+        <block wx:for="{{goods.spec}}" wx:for-item="item" wx:for-index="index">
+            <view class="info-spec-item">
+                <view class="spec-name">{{item.title}}</view>
+                <view class="spec-content">
+                    <block wx:for="{{item.part}}" wx:for-item="cell" wx:for-index="hindex">
+                        <view class="spec-pill {{item.checked==hindex?'active':''}}"  bindtap="chooseSpec" data-index="{{index}}" data-pindex="{{index}}" data-cindex="{{hindex}}" data-name="{{cell}}">{{cell}}</view>
+                    </block>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="cell-group">
+        <view class="repertory">数量</view>
+        <view class="count-set">
+            <view class="sub" bindtap="reduceCount">
+                <text class="icon icon-minus"></text>
+            </view>
+            <view class="sub">
+                <input type="number" value="{{default_number}}" disabled="true" class="buy-couts"></input>
+            </view>
+            <view class="sub" bindtap="addCount">
+                <text class="icon icon-add"></text>
+            </view>
+        </view>
+    </view>
+    <view class="tool-wrap">
+        <view class="add-cart" bindtap="bindGoCart">
+            <text>加入购物车</text>
+        </view>
+        <view class="buy-now" bindtap="buyNow">
+            <text>立即购买</text>
+        </view>
+    </view>
+</view>
